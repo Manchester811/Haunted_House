@@ -71,10 +71,26 @@ Return an appropriate string for the either of the following cases:
 3. Took the {item}
 4. There is nothing to take in the room.
 '''
-def take_item(tokens):
-    item = " ".join(tokens[tokens.index("take") + 1:])
-    pass
+class Room:
+    def __init__(self):
+        self.inventory = []
+        self.treasure_box_locked = True
+        self.score = 0
 
+    def take_item(self, item):
+        if self.treasure_box_locked and item == "treasure box":
+            return "Treasure box is locked"
+        elif not self.inventory:
+            return "There is nothing to take in the room"
+        elif item in self.inventory:
+            self.inventory.remove(item)
+            self.score += 10
+            return f"Took the {item}"
+        else:
+            return f"{item} is not present in the room"
+
+    def unlock_treasure_box(self):
+        self.treasure_box_locked = False
 
 '''
 This function should return a string with the contents of the inventory
@@ -88,10 +104,11 @@ If user has bread with them, the rats will attack the user.
 The user looses 30 points. 
 Return a string of appropiate msg if rats exists else return None 
 '''
-def handle_rats():
-    pass
 
-
+if rats==bread
+ print("the user will lose 30 point")
+else:
+    print("none")
 
 '''
 Write a function to go to a different room based on the direction specified.
